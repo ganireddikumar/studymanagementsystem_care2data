@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Study Management</h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Select</th>
+            <th>Study Name</th>
+            <th>Study Phase</th>
+            <th>Sponsor Name</th>
+            <th>Study Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for study in studies %}
+        <tr>
+            <td><input type="checkbox"></td>
+            <td>{{ study.study_name }}</td>
+            <td>{{ study.study_phase }}</td>
+            <td>{{ study.sponsor_name }}</td>
+            <td>{{ study.study_description }}</td>
+            <td><a href="{% url 'view_study' study.pk %}">View</a></td>
+            <td><a href="{% url 'edit_study' study.pk %}">Edit</a></td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+
+<div style="text-align: center; margin-top: 20px;">
+    <a href="{% url 'add_study' %}">Add Study</a>
+    <a href="#">Delete Study</a>
+</div>
+
+{% endblock %}
